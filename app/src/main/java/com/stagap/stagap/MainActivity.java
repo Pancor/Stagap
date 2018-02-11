@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         accountFragment = new AccountFragment();
 
         setFragment(homeFragment);
+        setTitle("Home");
 
         mMainNav = findViewById(R.id.navigation);
         mMainNav.setOnNavigationItemSelectedListener(
@@ -38,12 +39,15 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case(R.id.navigation_home):
                         setFragment(homeFragment);
+                        setTitle("Home");
                         return true;
                     case(R.id.navigation_person):
                         setFragment(accountFragment);
+                        setTitle("Account");
                         return true;
                     case(R.id.navigation_notifications):
                         setFragment(notificationsFragment);
+                        setTitle("Notifications");
                         return true;
                     default:
                         return false;
