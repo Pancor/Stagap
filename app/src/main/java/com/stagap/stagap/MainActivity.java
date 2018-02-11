@@ -16,8 +16,10 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout mMainFrame;
 
     private HomeFragment homeFragment;
+    private MessagesFragment messagesFragment;
     private NotificationsFragment notificationsFragment;
     private AccountFragment accountFragment;
+    private SettingsFragment settingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         homeFragment = new HomeFragment();
+        messagesFragment = new MessagesFragment();
         notificationsFragment = new NotificationsFragment();
         accountFragment = new AccountFragment();
+        settingsFragment = new SettingsFragment();
 
         setFragment(homeFragment);
         setTitle("Home");
@@ -41,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
                         setFragment(homeFragment);
                         setTitle("Home");
                         return true;
+                    case(R.id.navigation_messages):
+                        setFragment(messagesFragment);
+                        setTitle("Messages");
+                        return true;
                     case(R.id.navigation_person):
                         setFragment(accountFragment);
                         setTitle("Account");
@@ -48,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
                     case(R.id.navigation_notifications):
                         setFragment(notificationsFragment);
                         setTitle("Notifications");
+                        return true;
+                    case(R.id.navigation_settings):
+                        setFragment(settingsFragment);
+                        setTitle("Settings");
                         return true;
                     default:
                         return false;
