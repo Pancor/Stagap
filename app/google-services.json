@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "21131716170",
+    "firebase_url": "https://stagap-4a5ae.firebaseio.com",
+    "project_id": "stagap-4a5ae",
+    "storage_bucket": "stagap-4a5ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21131716170:android:2c23fae1cddec542",
+        "android_client_info": {
+          "package_name": "com.stagap.stagap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21131716170-f3ikq7vs2tibbmr0rsu635i4ebvf82ko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stagap.stagap",
+            "certificate_hash": "da3f6ebdf92c2568d534a7fa6be7ec9ef0f78519"
+          }
+        },
+        {
+          "client_id": "21131716170-hhnq7fuis4prdomf6ska3mg8afjc6rjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWYXleCvR7NHPMbzC3Q3KHWgW8b7d_IzM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21131716170-hhnq7fuis4prdomf6ska3mg8afjc6rjf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

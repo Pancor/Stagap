@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 public class NotificationsFragment extends Fragment {
 
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
