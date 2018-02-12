@@ -1,6 +1,7 @@
 package com.stagap.stagap;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
     private AccountFragment accountFragment;
     private SettingsFragment settingsFragment;
 
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sendToLogin();
         setContentView(R.layout.activity_main);
 
         homeFragment = new HomeFragment();
@@ -74,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
 
+    }
+
+    private void sendToLogin(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() == null){
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 }
