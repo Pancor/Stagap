@@ -6,44 +6,38 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+
     <Button
-        android:id="@+id/singUpBtn"
+        android:id="@+id/signUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:background="@color/colorPrimaryLight"
         android:text="@string/don_t_have_account_sign_up"
-        android:textColor="#490097"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="#490097" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="22dp"
+        android:padding="27dp"
         android:id="@+id/relativeLayout">
 
         <Button
             android:id="@+id/signInBtn"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/passwordField"
+            android:layout_alignStart="@+id/passwordField"
             android:layout_below="@+id/forgotPassText"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="42dp"
             android:background="@drawable/button_style_one"
             android:text="@string/sign_in"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimaryDark" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/logInImage"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/defaultprofile" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="13sp" />
 
         <EditText
             android:id="@+id/passwordField"
@@ -57,21 +51,22 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:textSize="16sp"
+            android:padding="9dp" />
 
         <EditText
             android:id="@+id/emailField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/forgotPassText"
-            android:layout_alignRight="@+id/forgotPassText"
-            android:layout_below="@+id/logInImage"
-            android:layout_marginTop="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="198dp"
             android:background="@drawable/edittext_style_one"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:shadowColor="@color/colorPrimary" />
+            android:padding="9dp"
+            android:shadowColor="@color/colorPrimary"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/forgotPassText"
