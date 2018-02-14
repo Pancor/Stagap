@@ -1,5 +1,6 @@
 package com.stagap.stagap;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -74,7 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
                         && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(passwordRep)){
                     if(password.equals(passwordRep)){
                         if(password.length()>=6){
-                        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener
+                            final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this,
+                                    R.style.Theme_AppCompat_Light_Dialog);
+                            progressDialog.setIndeterminate(true);
+                            progressDialog.setMessage("Authenticating...");
+                            progressDialog.show();
+                            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener
                                 (new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -97,10 +103,12 @@ public class RegisterActivity extends AppCompatActivity {
                                                 mAuth.signOut();
                                                 Intent intent = new Intent(getBaseContext(),
                                                         LoginActivity.class);
+                                                progressDialog.dismiss();
                                                 startActivity(intent);
                                                 finish();
                                             }else{
                                                 mAuth.getCurrentUser().delete();
+                                                progressDialog.dismiss();
                                                 Toast.makeText(getBaseContext(),
                                                         task.getException().toString(),
                                                         Toast.LENGTH_SHORT).show();
@@ -110,6 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 }else{
                                     String errorMess = task.getException().getMessage();
+                                    progressDialog.dismiss();
                                     Toast.makeText(getBaseContext(), "Error: " + errorMess,
                                             Toast.LENGTH_SHORT).show();
                                 }

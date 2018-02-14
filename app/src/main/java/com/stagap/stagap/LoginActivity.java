@@ -1,5 +1,6 @@
 package com.stagap.stagap;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,16 +44,24 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailField.getText().toString();
                 String password = passwordField.getText().toString();
                 if(!TextUtils.isEmpty(password) && !TextUtils.isEmpty(email)){
+                    final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                            R.style.Theme_AppCompat_Light_Dialog);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.show();
                     auth.signInWithEmailAndPassword(email, password).addOnCompleteListener
                             (new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                                        progressDialog.dismiss();
                                         startActivity(intent);
                                         finish();
                                     }else{
-                                        Toast.makeText(LoginActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                        Toast.makeText(LoginActivity.this, "Login error",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
