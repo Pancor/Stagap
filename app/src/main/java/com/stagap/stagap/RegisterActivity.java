@@ -94,13 +94,14 @@ public class RegisterActivity extends AppCompatActivity {
                                                         "The account was created succesfully",
                                                         Toast.LENGTH_SHORT).show();
 
+                                                mAuth.signOut();
                                                 Intent intent = new Intent(getBaseContext(),
-                                                        MainActivity.class);
+                                                        LoginActivity.class);
                                                 startActivity(intent);
                                                 finish();
                                             }else{
                                                 mAuth.getCurrentUser().delete();
-                                                Toast.makeText(getBaseContext(), "Error: "+
+                                                Toast.makeText(getBaseContext(),
                                                         task.getException().toString(),
                                                         Toast.LENGTH_SHORT).show();
                                             }
@@ -116,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                         });}
                         else{
                             Toast.makeText(getBaseContext(),
-                                    "Password must have more than six chars",
+                                    "Password must have more than six symbols.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }else{

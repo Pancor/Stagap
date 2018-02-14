@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="@string/name"
             android:textColor="#000"
             android:textSize="40sp" />
 
@@ -33,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/nameTextView"
-            android:text="@string/surname"
             android:textColor="#000"
             android:textSize="25sp" />
 
