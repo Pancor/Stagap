@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Batch;
@@ -27,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mEmail;
     private EditText mPassword;
     private EditText mPasswordRep;
+    private RelativeLayout relativeLoadingReg;
 
     private FirebaseAuth mAuth;
 
@@ -34,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     private Button mSignUp;
 
     private FirebaseFirestore mDataBase;
-    private Batch mDataBanch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.emailFieldReg);
         mPassword = findViewById(R.id.passwordFieldReg);
         mPasswordRep = findViewById(R.id.passwordFieldRegRep);
+        relativeLoadingReg = findViewById(R.id.relativeLoadingReg);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -77,9 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
                         if(password.length()>=6){
                             final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this,
                                     R.style.Theme_AppCompat_Light_Dialog);
-                            progressDialog.setIndeterminate(true);
-                            progressDialog.setMessage("Authenticating...");
-                            progressDialog.show();
+                            relativeLoadingReg.setVisibility(View.VISIBLE);
+                            setEditable(false);
                             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener
                                 (new OnCompleteListener<AuthResult>() {
                             @Override
@@ -103,14 +104,16 @@ public class RegisterActivity extends AppCompatActivity {
                                                 mAuth.signOut();
                                                 Intent intent = new Intent(getBaseContext(),
                                                         LoginActivity.class);
-                                                progressDialog.dismiss();
+                                                relativeLoadingReg.setVisibility(View.GONE);
+                                                setEditable(true);
                                                 startActivity(intent);
                                                 finish();
                                             }else{
                                                 mAuth.getCurrentUser().delete();
-                                                progressDialog.dismiss();
+                                                relativeLoadingReg.setVisibility(View.GONE);
+                                                setEditable(true);
                                                 Toast.makeText(getBaseContext(),
-                                                        task.getException().toString(),
+                                                        task.getException().getMessage(),
                                                         Toast.LENGTH_SHORT).show();
                                             }
                                         }
@@ -118,7 +121,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 }else{
                                     String errorMess = task.getException().getMessage();
-                                    progressDialog.dismiss();
+                                    relativeLoadingReg.setVisibility(View.GONE);
+                                    setEditable(true);
                                     Toast.makeText(getBaseContext(), "Error: " + errorMess,
                                             Toast.LENGTH_SHORT).show();
                                 }
@@ -139,5 +143,15 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void setEditable(Boolean truefalse){
+        mName.setEnabled(truefalse);
+        mSurname.setEnabled(truefalse);
+        mPassword.setEnabled(truefalse);
+        mPasswordRep.setEnabled(truefalse);
+        mEmail.setEnabled(truefalse);
+        mSignUp.setEnabled(truefalse);
+        mHaveAccBtn.setEnabled(truefalse);
     }
 }

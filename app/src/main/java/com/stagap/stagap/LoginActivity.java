@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button signUpBtn;
     private EditText emailField;
     private EditText passwordField;
+    private RelativeLayout relativeLoading;
 
     private FirebaseAuth auth;
 
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         emailField = findViewById(R.id.emailField);
         passwordField = findViewById(R.id.passwordField);
         signUpBtn = findViewById(R.id.signUpButton);
+        relativeLoading= findViewById(R.id.relativeLoading);
 
         signInBtn = findViewById(R.id.signInBtn);
         signInBtn.setOnClickListener(new View.OnClickListener() {
@@ -46,27 +49,29 @@ public class LoginActivity extends AppCompatActivity {
                 if(!TextUtils.isEmpty(password) && !TextUtils.isEmpty(email)){
                     final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                             R.style.Theme_AppCompat_Light_Dialog);
-                    progressDialog.setIndeterminate(true);
-                    progressDialog.setMessage("Authenticating...");
-                    progressDialog.show();
+                    relativeLoading.setVisibility(View.VISIBLE);
+                    setEditable(false);
                     auth.signInWithEmailAndPassword(email, password).addOnCompleteListener
                             (new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                                        progressDialog.dismiss();
+                                        relativeLoading.setVisibility(View.GONE);
+                                        setEditable(true);
                                         startActivity(intent);
                                         finish();
                                     }else{
-                                        progressDialog.dismiss();
+                                        relativeLoading.setVisibility(View.GONE);
+                                        setEditable(true);
                                         Toast.makeText(LoginActivity.this, "Login error",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                 }else{
-                    Toast.makeText(LoginActivity.this, "The fields are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "The fields are empty",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -81,6 +86,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void setEditable(Boolean truefalse){
+        signUpBtn.setClickable(truefalse);
+        signInBtn.setClickable(truefalse);
+        emailField.setEnabled(truefalse);
+        passwordField.setEnabled(truefalse);
     }
 
 }
