@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
                 setFragment(registerFragment);
                 break;
         }
-
     }
 
     private void setFragment(Fragment fragment){
