@@ -7,13 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class LoginActivity extends AppCompatActivity {
-    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
         setFragment(new LoginFragment());
     }
 
@@ -33,9 +32,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.loginRegFragment, fragment);
         fragmentTransaction.commit();
-
     }
 
 }
