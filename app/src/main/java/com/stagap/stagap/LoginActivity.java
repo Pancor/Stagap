@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -13,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setupMainImage();
         setFragment(new LoginFragment());
     }
 
@@ -37,4 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    private void setupMainImage() {
+        ImageView mainImage = findViewById(R.id.imageView2);
+        Glide.with(this)
+                .load(R.drawable.happy)
+                .into(mainImage);
+    }
 }
