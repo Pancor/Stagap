@@ -5,15 +5,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class LoginActivity extends AppCompatActivity {
-    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        setupMainImage();
         setFragment(new LoginFragment());
     }
 
@@ -29,13 +32,18 @@ public class LoginActivity extends AppCompatActivity {
                 setFragment(registerFragment);
                 break;
         }
-
     }
 
     private void setFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.loginRegFragment, fragment);
         fragmentTransaction.commit();
-
     }
 
+    private void setupMainImage() {
+        ImageView mainImage = findViewById(R.id.imageView2);
+        Glide.with(this)
+                .load(R.drawable.happy)
+                .into(mainImage);
+    }
 }
