@@ -6,10 +6,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-    private final String[] titles = {"LOGIN", "REGISTER"};
+    int mNoOfTabs;
 
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
+    }
+
+    public TabsPagerAdapter(FragmentManager fm, int numberOfTabs) {
+        super(fm);
+        mNoOfTabs = numberOfTabs;
     }
 
     @Override
@@ -25,11 +30,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return titles.length;
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles[position];
+        return mNoOfTabs;
     }
 }

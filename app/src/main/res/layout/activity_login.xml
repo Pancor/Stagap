@@ -10,22 +10,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/mainImage" />
-
+            android:layout_below="@id/mainRelative" />
+        <RelativeLayout
+            android:id="@+id/mainRelative"
+            android:layout_width="match_parent"
+            android:layout_height="295dp">
 
         <ImageView
             android:id="@+id/mainImage"
             android:layout_width="match_parent"
-            android:layout_height="295dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
             android:src="@drawable/happy" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/myTablebar"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabTextColor="#36000000"
+                android:background="@android:color/white"
+                style="@style/TabStyle"
+                android:theme="@style/TabStyle"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
