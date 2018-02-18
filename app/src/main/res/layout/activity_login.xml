@@ -32,12 +32,11 @@
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/myTablebar"
-                app:tabIndicatorColor="@android:color/white"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabTextColor="#36000000"
-                android:background="@android:color/white"/>
+                app:tabBackground="@drawable/tab_style"
+                app:tabIndicatorColor="@android:color/transparent"/>
 
         </RelativeLayout>
 
