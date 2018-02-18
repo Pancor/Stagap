@@ -40,10 +40,9 @@ public class LoginFragment extends Fragment {
 
         emailField = view.findViewById(R.id.emailField);
         passwordField = view.findViewById(R.id.passwordField);
-        relativeLoading= view.findViewById(R.id.relativeLoading);
-
-
+        relativeLoading= getActivity().findViewById(R.id.relativeLoading);
         signInBtn = view.findViewById(R.id.signInBtn);
+
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

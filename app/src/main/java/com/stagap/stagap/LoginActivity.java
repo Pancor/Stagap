@@ -7,16 +7,23 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class LoginActivity extends AppCompatActivity{
     private ViewPager viewPager;
     private ActionBar actionBar;
     private String[] tabs = { "LOGIN", "REGISTER"};
+    private ImageView mainImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mainImage = findViewById(R.id.mainImage);
+        Glide.with(this).load(R.drawable.happy).into(mainImage);
 
         TabLayout tabLayout = findViewById(R.id.myTablebar);
         tabLayout.addTab(tabLayout.newTab().setText("LOGIN"));
